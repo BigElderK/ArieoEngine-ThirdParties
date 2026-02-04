@@ -102,34 +102,34 @@ export_conan_recipes(
 
 install_conan_file(
     CONAN_FILE ${CMAKE_CURRENT_LIST_DIR}/conan/conanfile.android.txt
-    CONAN_HOST_PROFILE_FILE $ENV{INSTALL_FOLDER}/ArieoEngine-BuildEnv/conan/profiles/host/conan_host_profile.android.armv8.txt
-    OUTPUT_FOLDER ${INSTALL_FOLDER}/conan/_generated/android/armv8
+    CONAN_HOST_PROFILE_FILE $ENV{ARIEO_PACKAGE_BUILDENV_INSTALL_FOLDER}/conan/profiles/host/conan_host_profile.android.armv8.txt
+    OUTPUT_FOLDER ${INSTALL_FOLDER}/conan/android/armv8
 )
 
 install_conan_file(
     CONAN_FILE ${CMAKE_CURRENT_LIST_DIR}/conan/conanfile.raspberry.txt
-    CONAN_HOST_PROFILE_FILE $ENV{INSTALL_FOLDER}/ArieoEngine-BuildEnv/conan/profiles/host/conan_host_profile.raspberry.armv8.txt
-    OUTPUT_FOLDER ${INSTALL_FOLDER}/conan/_generated/raspberry/armv8
+    CONAN_HOST_PROFILE_FILE $ENV{ARIEO_PACKAGE_BUILDENV_INSTALL_FOLDER}/conan/profiles/host/conan_host_profile.raspberry.armv8.txt
+    OUTPUT_FOLDER ${INSTALL_FOLDER}/conan/raspberry/armv8
 )
 
 install_conan_file(
     CONAN_FILE ${CMAKE_CURRENT_LIST_DIR}/conan/conanfile.ubuntu.txt
-    CONAN_HOST_PROFILE_FILE $ENV{INSTALL_FOLDER}/ArieoEngine-BuildEnv/conan/profiles/host/conan_host_profile.ubuntu.x86_64.txt
-    OUTPUT_FOLDER ${INSTALL_FOLDER}/conan/_generated/ubuntu/x86_64
+    CONAN_HOST_PROFILE_FILE $ENV{ARIEO_PACKAGE_BUILDENV_INSTALL_FOLDER}/conan/profiles/host/conan_host_profile.ubuntu.x86_64.txt
+    OUTPUT_FOLDER ${INSTALL_FOLDER}/conan/ubuntu/x86_64
 )
 
 if (CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows")
     install_conan_file(
         CONAN_FILE ${CMAKE_CURRENT_LIST_DIR}/conan/conanfile.windows.txt
-        CONAN_HOST_PROFILE_FILE $ENV{INSTALL_FOLDER}/ArieoEngine-BuildEnv/conan/profiles/host/conan_host_profile.windows.x86_64.txt
-        OUTPUT_FOLDER ${INSTALL_FOLDER}/conan/_generated/windows/x86_64
+        CONAN_HOST_PROFILE_FILE $ENV{ARIEO_PACKAGE_BUILDENV_INSTALL_FOLDER}/conan/profiles/host/conan_host_profile.windows.x86_64.txt
+        OUTPUT_FOLDER ${INSTALL_FOLDER}/conan/windows/x86_64
     )
 endif()
 
 if (CMAKE_HOST_SYSTEM_NAME STREQUAL "Darwin")
     install_conan_file(
         CONAN_FILE ${CMAKE_CURRENT_LIST_DIR}/conan/conanfile.macos.txt
-        CONAN_HOST_PROFILE_FILE $ENV{INSTALL_FOLDER}/ArieoEngine-BuildEnv/conan/profiles/host/conan_host_profile.macos.arm64.txt
-        OUTPUT_FOLDER ${INSTALL_FOLDER}/conan/_generated/macos/arm64
+        CONAN_HOST_PROFILE_FILE $ENV{ARIEO_PACKAGE_BUILDENV_INSTALL_FOLDER}/conan/profiles/host/conan_host_profile.macos.arm64.txt
+        OUTPUT_FOLDER ${INSTALL_FOLDER}/conan/macos/arm64
     )
 endif()
