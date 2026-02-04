@@ -2,7 +2,10 @@
     "name": "areio.third_parties",
     "description": "Third party libraries for Areio projects",
     "main": "index.js",
-    "install_command": "cmake -P install_package.cmake",
+    "build_commands": 
+    [
+        "cmake -P build_package.cmake"
+    ],
     "dependencies": 
     {
         "packages": [
