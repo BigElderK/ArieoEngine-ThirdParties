@@ -61,6 +61,13 @@ function(install_gradle)
     message(STATUS "INSTALL_FOLDER: ${ARGUMENT_INSTALL_FOLDER}")
     message(STATUS "WORKING_DIRECTORY: ${ARGUMENT_WORKING_DIRECTORY}")
 
+    # Clean install folder before any operations
+    if(EXISTS "${ARGUMENT_INSTALL_FOLDER}")
+        message(STATUS "Cleaning install folder: ${ARGUMENT_INSTALL_FOLDER}")
+        file(REMOVE_RECURSE "${ARGUMENT_INSTALL_FOLDER}")
+    endif()
+    file(MAKE_DIRECTORY "${ARGUMENT_INSTALL_FOLDER}")
+
     # Check if gradlew.bat exists
     if(NOT EXISTS "${ARGUMENT_WORKING_DIRECTORY}/gradlew.bat")
         message(FATAL_ERROR "gradlew.bat not found in ${ARGUMENT_WORKING_DIRECTORY}")

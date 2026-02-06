@@ -80,7 +80,13 @@ function(install_conan_file)
     message(STATUS "CONAN_FILE: ${ARGUMENT_CONAN_FILE}")
     message(STATUS "CONAN_HOST_PROFILE_FILE: ${ARGUMENT_CONAN_HOST_PROFILE_FILE}")
     message(STATUS "INSTALL_FOLDER: ${ARGUMENT_INSTALL_FOLDER}")
-
+    # Clean install folder before any operations
+    if(EXISTS "${ARGUMENT_INSTALL_FOLDER}")
+        message(STATUS "Cleaning install folder: ${ARGUMENT_INSTALL_FOLDER}")
+        file(REMOVE_RECURSE "${ARGUMENT_INSTALL_FOLDER}")
+    endif()
+    file(MAKE_DIRECTORY "${ARGUMENT_INSTALL_FOLDER}")
+    
     execute_process(
         COMMAND conan
             install
