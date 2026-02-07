@@ -1,5 +1,5 @@
 {
-    "name": "areio.third_parties",
+    "name": "ArieoEngine-ThirdParties",
     "description": "Third party libraries for Areio projects",
     "main": "index.js",
     "install_commands": 
