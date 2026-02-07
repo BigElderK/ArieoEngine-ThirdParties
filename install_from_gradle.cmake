@@ -1,35 +1,9 @@
 cmake_minimum_required(VERSION 3.20)
 
-# INSTALL_FOLDER must be set from command line or environment variable
-if(NOT DEFINED INSTALL_FOLDER)
-    # Try to get from environment variable
-    if(DEFINED ENV{INSTALL_FOLDER})
-        set(INSTALL_FOLDER "$ENV{INSTALL_FOLDER}")
-        message(STATUS "Using INSTALL_FOLDER from environment: ${INSTALL_FOLDER}")
-    else()
-        message(FATAL_ERROR "INSTALL_FOLDER is not defined. Please specify it with -DINSTALL_FOLDER=<path> or set INSTALL_FOLDER environment variable")
-    endif()
+if($ENV{ARIEO_PACKAGE_BUILD_SETTING_HOST_PRESET} STREQUAL "android.armv8")
+    message(STATUS "Installing Gradle dependencies for preset: $ENV{ARIEO_PACKAGE_BUILD_SETTING_HOST_PRESET}")
 else()
-    message(STATUS "Using INSTALL_FOLDER from command line: ${INSTALL_FOLDER}")
-endif()
-
-# Check if ARIEO_PACKAGE_BUILDENV_HOST_PRESET is defined
-if(NOT DEFINED ARIEO_PACKAGE_BUILDENV_HOST_PRESET)
-    # Try to get from environment variable
-    if(DEFINED ENV{ARIEO_PACKAGE_BUILDENV_HOST_PRESET})
-        set(ARIEO_PACKAGE_BUILDENV_HOST_PRESET "$ENV{ARIEO_PACKAGE_BUILDENV_HOST_PRESET}")
-        message(STATUS "Using ARIEO_PACKAGE_BUILDENV_HOST_PRESET from environment: ${ARIEO_PACKAGE_BUILDENV_HOST_PRESET}")
-    else()
-        message(FATAL_ERROR "ARIEO_PACKAGE_BUILDENV_HOST_PRESET is not defined. Please specify it with -DARIEO_PACKAGE_BUILDENV_HOST_PRESET=<preset> or set ARIEO_PACKAGE_BUILDENV_HOST_PRESET environment variable")
-    endif()
-else()
-    message(STATUS "Using ARIEO_PACKAGE_BUILDENV_HOST_PRESET from command line: ${ARIEO_PACKAGE_BUILDENV_HOST_PRESET}")
-endif()
-
-if(ARIEO_PACKAGE_BUILDENV_HOST_PRESET STREQUAL "android.armv8")
-    message(STATUS "Installing Gradle dependencies for preset: ${ARIEO_PACKAGE_BUILDENV_HOST_PRESET}")
-else()
-    message(STATUS "Skipping Gradle dependencies installation for preset: ${ARIEO_PACKAGE_BUILDENV_HOST_PRESET}")
+    message(STATUS "Skipping Gradle dependencies installation for preset: $ENV{ARIEO_PACKAGE_BUILD_SETTING_HOST_PRESET}")
     return()
 endif()
 
@@ -109,13 +83,13 @@ if (CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows")
         GRADLE_FILE ${CMAKE_CURRENT_LIST_DIR}/gradle/gradlew.bat
         GRADLE_TASK generateCMakeConfigs
         WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/gradle
-        INSTALL_FOLDER ${INSTALL_FOLDER}/gradle/_generated
+        INSTALL_FOLDER $ENV{ARIEO_CUR_PACKAGE_INSTALL_FOLDER}/gradle/_generated
     )
 else()
     install_gradle(
         GRADLE_FILE ${CMAKE_CURRENT_LIST_DIR}/gradle/gradlew
         GRADLE_TASK generateCMakeConfigs
         WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/gradle
-        INSTALL_FOLDER ${INSTALL_FOLDER}/gradle/_generated
+        INSTALL_FOLDER $ENV{ARIEO_CUR_PACKAGE_INSTALL_FOLDER}/gradle/_generated
     )
 endif()
