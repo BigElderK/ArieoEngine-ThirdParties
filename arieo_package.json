@@ -1,5 +1,5 @@
 {
-    "name": "ArieoEngine-ThirdParties",
+    "name": "Arieo-ThirdParties",
     "description": "Third party libraries for Areio projects",
     "main": "index.js",
     "install_commands": 
@@ -10,7 +10,7 @@
     {
         "packages": [
             {
-                "git_url": "https://github.com/BigElderK/ArieoEngine-BuildEnv.git",
+                "git_url": "https://github.com/BigElderK/Arieo-BuildEnv.git",
                 "tag": "main"
             }
         ]
