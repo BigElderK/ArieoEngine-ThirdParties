@@ -72,6 +72,8 @@ add_custom_command(
         --build=missing # change to --build=* to force rebuild of all packages
     COMMAND ${CMAKE_COMMAND} -E touch ${CONAN_STAMP_FILE}
     COMMENT "Running conan install for ${CMAKE_CONFIGURE_PRESET}"
+    COMMAND_ERROR_IS_FATAL ANY
+    USES_TERMINAL
     VERBATIM
 )
 
