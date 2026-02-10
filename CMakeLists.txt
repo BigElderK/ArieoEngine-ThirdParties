@@ -132,7 +132,7 @@ if(${CMAKE_CONFIGURE_PRESET} STREQUAL "android.armv8")
     )
 
     # Install gradle generated files directly from build output
-    install(DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/gradle/build/cmake-configs/
+    install(DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/gradle/build/cmake-configs/android/arm64-v8a/cmake/
         DESTINATION gradle/${CMAKE_CONFIGURE_PRESET}
     )
 else()
