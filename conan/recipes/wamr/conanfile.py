@@ -1,4 +1,3 @@
-import logging
 from conan import ConanFile
 from conan.tools.cmake import CMake, CMakeToolchain, CMakeDeps, cmake_layout
 from conan.tools.scm import Git
@@ -129,12 +128,23 @@ class WamrConan(ConanFile):
     def package_info(self):
         self.cpp_info.includedirs = ['include']
         self.cpp_info.libdirs = ['lib']
-        self.cpp_info.libs = ['iwasm']
         
-        # System libraries
+        # Determine platform system libraries
         if self.settings.os == "Linux":
-            self.cpp_info.system_libs = ["pthread", "m", "dl"]
+            system_libs = ["pthread", "m", "dl"]
         elif self.settings.os == "Macos":
-            self.cpp_info.system_libs = ["pthread", "m"]
+            system_libs = ["pthread", "m"]
         elif self.settings.os == "Windows":
-            self.cpp_info.system_libs = ["ws2_32"]
+            system_libs = ["ws2_32"]
+        else:
+            system_libs = []
+        
+        # Release variant: fast interpreter, optimized
+        self.cpp_info.components["iwasm"].libs = ["iwasm"]
+        self.cpp_info.components["iwasm"].includedirs = ["include"]
+        self.cpp_info.components["iwasm"].system_libs = system_libs
+        
+        # Debug variant: classic interpreter, source debugging, call stack dump
+        self.cpp_info.components["iwasm_d"].libs = ["iwasm_d"]
+        self.cpp_info.components["iwasm_d"].includedirs = ["include"]
+        self.cpp_info.components["iwasm_d"].system_libs = system_libs
