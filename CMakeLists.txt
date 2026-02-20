@@ -22,17 +22,16 @@ set(CONAN_RECIPE_FILES
 )
 
 ##################################################################
-# Check if Environment ARIEO_THIRDPARTIES_PACKAGE_OUTPUT_FOLDER is defined (set by install_py) and use it as the output directory for conan builds
-if(NOT DEFINED ENV{ARIEO_THIRDPARTIES_PACKAGE_OUTPUT_FOLDER})
-    message(STATUS "Environment variable ARIEO_THIRDPARTIES_PACKAGE_OUTPUT_FOLDER is not defined. Conan build output will be placed in ${CMAKE_BINARY_DIR}/conan_build_output")
-    set(ARIEO_THIRDPARTIES_PACKAGE_OUTPUT_FOLDER ${CMAKE_BINARY_DIR})
+# Check if Environment ARIEO_THIRDPARTIES_PACKAGES_OUTPUT_DIR is defined (set by install_py) and use it as the output directory for conan builds
+if(NOT DEFINED ENV{ARIEO_THIRDPARTIES_PACKAGES_OUTPUT_DIR})
+    message(STATUS "Environment variable ARIEO_THIRDPARTIES_PACKAGES_OUTPUT_DIR is not defined. Conan build output will be placed in ${CMAKE_BINARY_DIR}/conan_build_output")
+    set(ARIEO_THIRDPARTIES_PACKAGES_OUTPUT_DIR ${CMAKE_BINARY_DIR})
 else()
-    message(STATUS "Using ARIEO_THIRDPARTIES_PACKAGE_OUTPUT_FOLDER: $ENV{ARIEO_THIRDPARTIES_PACKAGE_OUTPUT_FOLDER}")
-    set(ARIEO_THIRDPARTIES_PACKAGE_OUTPUT_FOLDER $ENV{ARIEO_THIRDPARTIES_PACKAGE_OUTPUT_FOLDER})
+    message(STATUS "Using ARIEO_THIRDPARTIES_PACKAGES_OUTPUT_DIR: $ENV{ARIEO_THIRDPARTIES_PACKAGES_OUTPUT_DIR}")
+    set(ARIEO_THIRDPARTIES_PACKAGES_OUTPUT_DIR $ENV{ARIEO_THIRDPARTIES_PACKAGES_OUTPUT_DIR})
 endif()
 
-
-set(ARIEO_CUR_PACKAGE_BUILD_OUTPUT_DIR ${ARIEO_THIRDPARTIES_PACKAGE_OUTPUT_FOLDER})
+set(ARIEO_CUR_PACKAGE_BUILD_OUTPUT_DIR ${ARIEO_THIRDPARTIES_PACKAGES_OUTPUT_DIR})
 
 # Ensure output directory exists (configure_file doesn't create parent directories)
 file(MAKE_DIRECTORY ${ARIEO_CUR_PACKAGE_BUILD_OUTPUT_DIR})
