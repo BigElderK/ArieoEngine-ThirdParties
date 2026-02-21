@@ -3,7 +3,7 @@ cmake_policy(SET CMP0175 NEW)
 
 include($ENV{ARIEO_BUILD_ENV_PACKAGES_OUTPUT_DIR}/cmake/build_environment.cmake)
 
-ArieoPackage(
+ARIEO_PACKAGE(
     Arieo-ThirdParties
     CATEGORY 01_third_parties
     COMPONENTS
